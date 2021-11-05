@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 void calculaRede(REDE* rede)
 {
     int i;
@@ -25,8 +24,10 @@ void calculaRede(REDE* rede)
     rede->g_t = alloca1DD(rede->K);
     rede->Ltx_i = alloca1DD(rede->K);
     rede->F = alloca1DD(rede->K);
+    rede->u = alloca1DD(rede->K);
     rede->H = alloca2DD(rede->K,rede->K);
-
+    rede->B = alloca2DD(rede->K,rede->K);
+    rede->G = alloca2DD(rede->K,rede->K);
     rede->Ltx_i[0] = 50.0000;
     rede->Ltx_i[1] = 50.0000;
     rede->Ltx_i[2] = 50.0000;
