@@ -162,7 +162,7 @@ void inserirPSO(PSO* pso, REDE* rede)
     pso->Wadp = 0.812214;
     pso->K = 32;
     pso->M = 64;
-    pso->iteracoes = 1800;
+    pso->iteracoes = 1000;
     pso->Pmax = rede->Pmax;
     pso->jPgbest = 0.00;
     pso->SNIR = alloca2DD(pso->K,pso->M);

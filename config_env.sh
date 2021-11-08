@@ -6,8 +6,8 @@ do
 	sudo docker exec -i pso_$i apt-get update 
 	sudo docker exec -i pso_$i apt-get install vim -y
 	sudo docker exec -i pso_$i apt-get install gcc -y 
-	sudo docker exec -i pso_$i apg-get install g++ -y
+	sudo docker exec -i pso_$i apt-get install g++ -y
 	sudo docker cp pso_$i/ pso_$i:/home/
-	sudo docker cp matrix_inversion_$i/ matrix_inversion_$i:/home/
+	#sudo docker cp matrix_inversion_$i/ matrix_inversion_$i:/home/
 done
 
