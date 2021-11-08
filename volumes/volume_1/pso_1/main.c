@@ -78,7 +78,7 @@ int main()
     PSO* pso = allocaPSO();// This function allocates an objetct PSO dinamically.
     PSOAUX * psoaux = allocaPSOAUX();// This function allocates an object PSOAUX dinamically.
     clock_t tempo;// This variable is used to count the time taken to evaluate the algorithm. 
-	//tempo = clock();// "tempo" is initialized with the current host time. 
+	tempo = clock();// "tempo" is initialized with the current host time. 
    // do
     //{
 	// At this point, we are just setting the variables and constants of the network and algorithm.
@@ -86,14 +86,13 @@ int main()
         inserirPSO(pso,rede);// This function set the initial state of the PSO algorithm.
         calculaPSOAUX(psoaux,pso);// This function set the initial state of the structure responsible for store the evolution of the PSO. 
         CalculaP(pso);// This function is responsible for filling the search area. 
-      	tempo = clock();  
-	calculaPibest(pso);// This function is responsible for initializing the best local positions of the PSO.
+        calculaPibest(pso);// This function is responsible for initializing the best local positions of the PSO.
         calculaPgbest(pso);// This function is responsible for initializing the best global positions of the PSO. 
         calculaG(pso,rede);
         SNIR(pso);// This function is calculating the SNIR belonging to all users of the optical network.
         calculaFth(pso,rede);
         fitness(pso);
-	
+
         for(i = 0; i < pso->iteracoes; i ++)
         {
             SNIR(pso);
@@ -109,16 +108,15 @@ int main()
 
 
 
-           // calculaSNIR_aux(pso,psoaux,i);
-            //calculaPgbest_aux(pso,psoaux,i);
-            //psoaux->jP[i] = pso->jPgbest;
+            calculaSNIR_aux(pso,psoaux,i);
+            calculaPgbest_aux(pso,psoaux,i);
+            psoaux->jP[i] = pso->jPgbest;
         }
-        //calculaSNR(pso,rede);
-        //psoaux->SNR = pso->SNR;
+        calculaSNR(pso,rede);
+        psoaux->SNR = pso->SNR;
    //}while(verificaSNR(pso));
-	printf("Tempo: %f\n ",(clock() -tempo) / (double)CLOCKS_PER_SEC);
 
-   	//imprimir1DF(pso->SNR,pso->K);
+    imprimir1DF(pso->SNR,pso->K);
 	printf("Jpgbest: %f\n",pso->jPgbest);
 	printf("Wadp: %f\n",pso->Wadp);
 	printf("c1: %f\n",pso->c1);
@@ -126,8 +124,8 @@ int main()
 	psoaux->c1 = pso->c1;
 	psoaux->c2 = pso->c2;
 	psoaux->Wadp = pso->Wadp;
-	//printf("Tempo:%f\n ",(clock() - tempo) / (double)CLOCKS_PER_SEC);
-    //gravarTxt(psoaux);
+	printf("Tempo:%f\n ",(clock() - tempo) / (double)CLOCKS_PER_SEC);
+    gravarTxt(psoaux);
  //   system("PAUSE");
     return 0;
 }
